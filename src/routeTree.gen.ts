@@ -10,33 +10,129 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as RankingsRouteImport } from './routes/rankings'
+import { Route as SetoresRouteImport } from './routes/setores'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as AcoesIndexRouteImport } from './routes/acoes.index'
+import { Route as AcoesTickerRouteImport } from './routes/acoes.$ticker'
+import { Route as ApiPublicHooksUpdateStocksRouteImport } from './routes/api/public/hooks/update-stocks'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RankingsRoute = RankingsRouteImport.update({
+  id: '/rankings',
+  path: '/rankings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetoresRoute = SetoresRouteImport.update({
+  id: '/setores',
+  path: '/setores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcoesIndexRoute = AcoesIndexRouteImport.update({
+  id: '/acoes/',
+  path: '/acoes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcoesTickerRoute = AcoesTickerRouteImport.update({
+  id: '/acoes/$ticker',
+  path: '/acoes/$ticker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicHooksUpdateStocksRoute =
+  ApiPublicHooksUpdateStocksRouteImport.update({
+    id: '/api/public/hooks/update-stocks',
+    path: '/api/public/hooks/update-stocks',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/rankings': typeof RankingsRoute
+  '/setores': typeof SetoresRoute
+  '/sobre': typeof SobreRoute
+  '/acoes/$ticker': typeof AcoesTickerRoute
+  '/acoes/': typeof AcoesIndexRoute
+  '/api/public/hooks/update-stocks': typeof ApiPublicHooksUpdateStocksRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/rankings': typeof RankingsRoute
+  '/setores': typeof SetoresRoute
+  '/sobre': typeof SobreRoute
+  '/acoes/$ticker': typeof AcoesTickerRoute
+  '/acoes': typeof AcoesIndexRoute
+  '/api/public/hooks/update-stocks': typeof ApiPublicHooksUpdateStocksRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/rankings': typeof RankingsRoute
+  '/setores': typeof SetoresRoute
+  '/sobre': typeof SobreRoute
+  '/acoes/$ticker': typeof AcoesTickerRoute
+  '/acoes/': typeof AcoesIndexRoute
+  '/api/public/hooks/update-stocks': typeof ApiPublicHooksUpdateStocksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/rankings'
+    | '/setores'
+    | '/sobre'
+    | '/acoes/$ticker'
+    | '/acoes/'
+    | '/api/public/hooks/update-stocks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/rankings'
+    | '/setores'
+    | '/sobre'
+    | '/acoes/$ticker'
+    | '/acoes'
+    | '/api/public/hooks/update-stocks'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/rankings'
+    | '/setores'
+    | '/sobre'
+    | '/acoes/$ticker'
+    | '/acoes/'
+    | '/api/public/hooks/update-stocks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  RankingsRoute: typeof RankingsRoute
+  SetoresRoute: typeof SetoresRoute
+  SobreRoute: typeof SobreRoute
+  AcoesTickerRoute: typeof AcoesTickerRoute
+  AcoesIndexRoute: typeof AcoesIndexRoute
+  ApiPublicHooksUpdateStocksRoute: typeof ApiPublicHooksUpdateStocksRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +144,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rankings': {
+      id: '/rankings'
+      path: '/rankings'
+      fullPath: '/rankings'
+      preLoaderRoute: typeof RankingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setores': {
+      id: '/setores'
+      path: '/setores'
+      fullPath: '/setores'
+      preLoaderRoute: typeof SetoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acoes/': {
+      id: '/acoes/'
+      path: '/acoes'
+      fullPath: '/acoes/'
+      preLoaderRoute: typeof AcoesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acoes/$ticker': {
+      id: '/acoes/$ticker'
+      path: '/acoes/$ticker'
+      fullPath: '/acoes/$ticker'
+      preLoaderRoute: typeof AcoesTickerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/hooks/update-stocks': {
+      id: '/api/public/hooks/update-stocks'
+      path: '/api/public/hooks/update-stocks'
+      fullPath: '/api/public/hooks/update-stocks'
+      preLoaderRoute: typeof ApiPublicHooksUpdateStocksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  RankingsRoute: RankingsRoute,
+  SetoresRoute: SetoresRoute,
+  SobreRoute: SobreRoute,
+  AcoesTickerRoute: AcoesTickerRoute,
+  AcoesIndexRoute: AcoesIndexRoute,
+  ApiPublicHooksUpdateStocksRoute: ApiPublicHooksUpdateStocksRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
