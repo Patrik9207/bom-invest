@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RankingsRouteImport } from './routes/rankings'
+import { Route as SetoresRouteImport } from './routes/setores'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as AcoesIndexRouteImport } from './routes/acoes.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RankingsRoute = RankingsRouteImport.update({
+  id: '/rankings',
+  path: '/rankings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetoresRoute = SetoresRouteImport.update({
+  id: '/setores',
+  path: '/setores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcoesIndexRoute = AcoesIndexRouteImport.update({
+  id: '/acoes/',
+  path: '/acoes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/rankings': typeof RankingsRoute
+  '/setores': typeof SetoresRoute
+  '/sobre': typeof SobreRoute
+  '/acoes/': typeof AcoesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/rankings': typeof RankingsRoute
+  '/setores': typeof SetoresRoute
+  '/sobre': typeof SobreRoute
+  '/acoes': typeof AcoesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/rankings': typeof RankingsRoute
+  '/setores': typeof SetoresRoute
+  '/sobre': typeof SobreRoute
+  '/acoes/': typeof AcoesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/rankings' | '/setores' | '/sobre' | '/acoes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/rankings' | '/setores' | '/sobre' | '/acoes'
+  id: '__root__' | '/' | '/rankings' | '/setores' | '/sobre' | '/acoes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  RankingsRoute: typeof RankingsRoute
+  SetoresRoute: typeof SetoresRoute
+  SobreRoute: typeof SobreRoute
+  AcoesIndexRoute: typeof AcoesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rankings': {
+      id: '/rankings'
+      path: '/rankings'
+      fullPath: '/rankings'
+      preLoaderRoute: typeof RankingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setores': {
+      id: '/setores'
+      path: '/setores'
+      fullPath: '/setores'
+      preLoaderRoute: typeof SetoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acoes/': {
+      id: '/acoes/'
+      path: '/acoes'
+      fullPath: '/acoes/'
+      preLoaderRoute: typeof AcoesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  RankingsRoute: RankingsRoute,
+  SetoresRoute: SetoresRoute,
+  SobreRoute: SobreRoute,
+  AcoesIndexRoute: AcoesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
